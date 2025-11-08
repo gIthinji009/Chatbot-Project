@@ -1,44 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
-    <h1>Admin Dashboard</h1>
-    <a href="{{ url_for('admin_logout') }}">Logout</a>
-    <h2>Add FAQ</h2>
-    {% if error %}
-        <p class="error">{{ error }}</p>
-    {% endif %}
-    {% if message %}
-        <p class="success">{{ message }}</p>
-    {% endif %}
-    <form method="POST">
-        <label>Question:</label><br>
-        <input type="text" name="question" required><br>
-        <label>Answer:</label><br>
-        <textarea name="answer" required></textarea><br>
-        <label>Category:</label><br>
-        <input type="text" name="category" required><br>
-        <button type="submit">Add FAQ</button>
-    </form>
-    <h2>Current FAQs</h2>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Question</th>
-            <th>Answer</th>
-            <th>Category</th>
-        </tr>
-        {% for faq in faqs %}
-            <tr>
-                <td>{{ faq[0] }}</td>
-                <td>{{ faq[1] }}</td>
-                <td>{{ faq[2] }}</td>
-                <td>{{ faq[3] }}</td>
-            </tr>
-        {% endfor %}
-    </table>
+<body class="admin-page">
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>🛠️ Admin Dashboard</h1>
+            <a href="{{ url_for('admin_logout') }}" class="logout-btn">Logout</a>
+        </header>
+
+        <section class="form-section">
+            <h2>Add FAQ</h2>
+            {% if error %}<p class="error">{{ error }}</p>{% endif %}
+            {% if message %}<p class="success">{{ message }}</p>{% endif %}
+
+            <form method="POST" class="faq-form">
+                <label>Question</label>
+                <input type="text" name="question" required>
+
+                <label>Answer</label>
+                <textarea name="answer" rows="4" required></textarea>
+
+                <label>Category</label>
+                <input type="text" name="category" required>
+
+                <button type="submit" class="primary-btn">Add FAQ</button>
+            </form>
+        </section>
+
+        <section class="table-section">
+            <h2>Current FAQs</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Question</th>
+                        <th>Answer</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for faq in faqs %}
+                        <tr>
+                            <td>{{ faq[0] }}</td>
+                            <td>{{ faq[1] }}</td>
+                            <td>{{ faq[2] }}</td>
+                            <td>{{ faq[3] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </div>
 </body>
 </html>
