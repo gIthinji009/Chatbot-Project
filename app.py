@@ -64,5 +64,10 @@ def admin_logout():
     return redirect(url_for('admin_login'))
 
 if __name__ == '__main__':
-    init_db()  # Initialize database
+    if not os.path.exists('chatbot.db'):
+        from database import init_db
+        init_db()
+        print("Database initialized.")
+    else:
+        print("Existing database found, skipping initialization.")
     app.run(debug=True)
