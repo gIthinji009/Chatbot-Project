@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template, session, redirect, url_for
 from database import init_db, add_query, add_log, search_knowledge_base, add_faq, get_faqs, verify_admin
-
+import os
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'  # For session management
 
