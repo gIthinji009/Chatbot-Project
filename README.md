@@ -135,6 +135,6 @@ Chatbot-Project/
 
 ## 🧑‍💻 Author
 
-**Your Name**
+
 GitHub: [@gIthinji009](https://github.com/gIthinji009)
 
