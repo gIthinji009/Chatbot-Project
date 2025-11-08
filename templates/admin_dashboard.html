@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <a href="{{ url_for('admin_logout') }}">Logout</a>
+    <h2>Add FAQ</h2>
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+    {% if message %}
+        <p class="success">{{ message }}</p>
+    {% endif %}
+    <form method="POST">
+        <label>Question:</label><br>
+        <input type="text" name="question" required><br>
+        <label>Answer:</label><br>
+        <textarea name="answer" required></textarea><br>
+        <label>Category:</label><br>
+        <input type="text" name="category" required><br>
+        <button type="submit">Add FAQ</button>
+    </form>
+    <h2>Current FAQs</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Question</th>
+            <th>Answer</th>
+            <th>Category</th>
+        </tr>
+        {% for faq in faqs %}
+            <tr>
+                <td>{{ faq[0] }}</td>
+                <td>{{ faq[1] }}</td>
+                <td>{{ faq[2] }}</td>
+                <td>{{ faq[3] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
