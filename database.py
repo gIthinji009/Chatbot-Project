@@ -50,8 +50,8 @@ def init_db():
     c.execute("INSERT OR IGNORE INTO KnowledgeBase (Question, Answer, Category, LastUpdated) VALUES (?, ?, ?, ?)",
               ("What is the tuition fee?", "Tuition is $10,000 per semester.", "Fees", datetime.now()))
     
-    # Insert default admin (password: admin123)
-    hashed_password = "$2b$12$4b7xQz8f9z5K6J8X9y2Zue8z2Qz2Qz2Qz2Qz2Qz2Qz2Qz2Qz2Qz2"  # Pre-hashed for simplicity
+    
+    hashed_password = "$2b$12$xBe0yrr9ZkWTgZw9r2cef.zyeFMELoB417LAy2EZhOricGS9e0Lka"  
     c.execute("INSERT OR IGNORE INTO Admin (Username, Password, Email) VALUES (?, ?, ?)",
               ("admin", hashed_password, "admin@university.com"))
     
@@ -110,3 +110,4 @@ def verify_admin(username, password):
     if result and bcrypt.checkpw(password.encode('utf-8'), result[0].encode('utf-8')):
         return True
     return False
+
